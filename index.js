@@ -3,6 +3,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import cookieParser from 'cookie-parser';
 import mongoose from 'mongoose';
+import authRouter from './routers/authRouter.js';
 
 const app = express();
 app.use(cors());
@@ -15,6 +16,7 @@ mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log('Connected to MongoDB'))
     .catch(err => console.error('Could not connect to MongoDB:', err));
 
+app.use('/api/auth', authRouter);
 app.get('/', (req, res) => {
     res.json({ message: 'Hello, World!' });
 });

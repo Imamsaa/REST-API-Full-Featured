@@ -53,4 +53,12 @@ const signin = async (req, res) => {
     }
 };
 
-export default { signup, signin };
+const signout = (req, res) => {
+    res.clearCookie('Authorization');
+    res.status(200).json({
+        success: true,   
+        message: 'Signout successful' 
+    });
+}
+
+export default { signup, signin, signout };
